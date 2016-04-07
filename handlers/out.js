@@ -22,7 +22,7 @@ module.exports = function (req, res, next) {
   var poll = buildPoll(pollParts);
 
   var botPayload = {
-    "response_type": "in_channel"
+    response_type: "in_channel",
     attachments : [
       poll
     ],
