@@ -19,9 +19,6 @@ module.exports = function (req, res, next) {
   var pollParts = text.match(/(?:[^\s"]+|"[^"]*")+/g);
   pollParts.splice(0, 1);
   var poll = buildPoll(pollParts);
-  if (typeof poll !== 'string') {
-    poll = {}
-  }
 
   var botPayload = {
     attachments : [
