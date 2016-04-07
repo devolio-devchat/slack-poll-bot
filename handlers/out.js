@@ -34,6 +34,8 @@ var buildPoll = function(parts) {
       return false;
   }
   var attachment = {
+    "color": "#36a64f",
+    text: "",
     pretext : "There is a new poll! React to this message with the emoticon left of your preferred answer! \n",
   };
   parts.forEach(function(part, index) {
