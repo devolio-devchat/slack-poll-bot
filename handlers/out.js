@@ -1,6 +1,7 @@
 var BOT_NAME = 'pollbot';
 var TOKEN = process.argv[2];
 var EMOTICONS = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:', ':seven:', ':eight:', ':nine:', ':ten:'];
+var FRUITEMOTICONS = [':lemon:', ':apple:', ':tangerine:', ':cherries:', ':grapes:', ':watermelon:', ':strawberry:', ':peach:', ':melon:', ':banana:', ':pineapple:', ':pear:'];
 
 module.exports = function (req, res, next) {
   console.log('received poll');
@@ -39,7 +40,7 @@ var buildPoll = function(parts) {
     pretext : "There is a new poll! React to this message with the emoticon left of your preferred answer! \n",
   };
   parts.forEach(function(part, index) {
-    if ((index < EMOTICONS.length) && index != 0) {
+    if ((index < FRUITEMOTICONS.length) && index != 0) {
       attachment.text = attachment.text + EMOTICONS[index-1] + ": " + part +"\n";
     } else {
       attachment.title = part + "\n"
