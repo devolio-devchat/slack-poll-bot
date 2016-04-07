@@ -1,11 +1,11 @@
 var BOT_NAME = 'pollbot';
-var TOKEN = process.argv[0];
+var TOKEN = process.argv[2];
 var EMOTICONS = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:', ':seven:', ':eight:', ':nine:', ':ten:'];
 
 module.exports = function (req, res, next) {
   console.log('received poll');
 
-  console.log(TOKEN);
+  console.log(process.argv);
   var token = req.body.token;
   if (token !== TOKEN) {
     return res.status(200).end();
