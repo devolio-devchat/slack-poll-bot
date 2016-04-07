@@ -18,7 +18,7 @@ module.exports = function (req, res, next) {
   }
   var text = req.body.text;
   var pollParts = text.match(/(?:[^\s"]+|"[^"]*")+/g);
-  pollParts.splice(0, 1);
+  // pollParts.splice(0, 1);
   var poll = buildPoll(pollParts);
 
   var botPayload = {
