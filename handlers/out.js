@@ -16,7 +16,7 @@ module.exports = function (req, res, next) {
   }
   console.log('starting to create poll response');
   var text = req.body.text;
-  var pollParts = text.match(/(?:[^\s"]+|"[^"]*")+/g);
+  var pollParts = text.match(/(?:[^\s"]+|"[^"]*")+/g).splice(0, 1);
   console.log(pollParts);
   var poll = buildPoll(pollParts);
   if (typeof poll !== 'string') {
