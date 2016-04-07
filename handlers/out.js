@@ -39,10 +39,10 @@ var buildPoll = function(parts) {
   var poll = "";
   console.log('buildPoll ');
   parts.forEach(function(part, index) {
-    if (index < EMOTICONS.length && index != 0) {
-      poll + EMOTICONS[index] + ": " + part +"\\n";
+    if ((index < EMOTICONS.length) && index != 0) {
+      poll = poll + EMOTICONS[index] + ": " + part +"\\n";
     } else {
-      poll + part + "\\n"
+      poll = poll + part + "\\n"
     }
   });
   return poll;
