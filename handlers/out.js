@@ -4,7 +4,8 @@ var EMOTICONS = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:', ':sev
 
 module.exports = function (req, res, next) {
   console.log('received poll');
-  console.log(req.body);
+
+  console.log(TOKEN);
   var token = req.body.token;
   if (token !== TOKEN) {
     return res.status(200).end();
@@ -14,11 +15,9 @@ module.exports = function (req, res, next) {
   if (userName == BOT_NAME) {
     return res.status(200).end();
   }
-  console.log('starting to create poll response');
   var text = req.body.text;
   var pollParts = text.match(/(?:[^\s"]+|"[^"]*")+/g);
   pollParts.splice(0, 1);
-  console.log(pollParts);
   var poll = buildPoll(pollParts);
   if (typeof poll !== 'string') {
     poll = "please supply a poll"
@@ -26,19 +25,15 @@ module.exports = function (req, res, next) {
   var botPayload = {
     text: poll,
   };
-  console.log(botPayload);
   return res.status(200).json(botPayload);
 };
 
 
 var buildPoll = function(parts) {
-  console.log('buildPoll start');
-
   if( !(Object.prototype.toString.call( parts ) === '[object Array]')) {
       return false;
   }
   var poll = "";
-  console.log('buildPoll ');
   parts.forEach(function(part, index) {
     if ((index < EMOTICONS.length) && index != 0) {
       poll = poll + EMOTICONS[index-1] + ": " + part +"\n";
