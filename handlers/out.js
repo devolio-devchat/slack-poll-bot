@@ -3,6 +3,7 @@ var TOKEN = 'hZ32m4RHVFbHvUK3kgbFBLhQ';
 var EMOTICONS = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:', ':seven:', ':eight:', ':nine:', ':ten:'];
 
 module.exports = function (req, res, next) {
+  console.log('received poll');
   var token = req.body.token;
   if (token !== TOKEN) {
     return res.status(200).end();
