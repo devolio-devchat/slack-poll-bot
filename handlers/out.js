@@ -1,5 +1,5 @@
 var BOT_NAME = 'pollbot';
-var TOKEN = 'hZ32m4RHVFbHvUK3kgbFBLhQ';
+var TOKEN = 'M30cTrf0C8sUfEJeLr8P80z0';
 var EMOTICONS = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:', ':seven:', ':eight:', ':nine:', ':ten:'];
 
 module.exports = function (req, res, next) {
