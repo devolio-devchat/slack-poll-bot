@@ -21,6 +21,11 @@ module.exports = function (req, res, next) {
   if (TYPE === "bot") {
     pollParts.splice(0, 1);
   }
+
+  if (pollParts.length < 2) {
+    return res.status(200).json({});
+  }
+
   var poll = buildPoll(pollParts);
 
   var botPayload = {

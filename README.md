@@ -16,4 +16,5 @@ $ npm start
 ## Arguments
 
 token - the bot token
+
 type - bot or command
