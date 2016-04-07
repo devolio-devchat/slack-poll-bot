@@ -20,10 +20,13 @@ module.exports = function (req, res, next) {
   pollParts.splice(0, 1);
   var poll = buildPoll(pollParts);
   if (typeof poll !== 'string') {
-    poll = "please supply a poll"
+    poll = {}
   }
+
   var botPayload = {
-    text: poll,
+    attachments : [
+      poll
+    ],
   };
   return res.status(200).json(botPayload);
 };
@@ -33,13 +36,15 @@ var buildPoll = function(parts) {
   if( !(Object.prototype.toString.call( parts ) === '[object Array]')) {
       return false;
   }
-  var poll = "";
+  var attachment = {
+    pretext : "There is a new poll! React to this message with the emoticon left of your preferred answer! \n",
+  };
   parts.forEach(function(part, index) {
     if ((index < EMOTICONS.length) && index != 0) {
-      poll = poll + EMOTICONS[index-1] + ": " + part +"\n";
+      attachment.text = attachment.text + EMOTICONS[index-1] + ": " + part +"\n";
     } else {
-      poll = poll + part + "\n"
+      attachment.title = part + "\n"
     }
   });
-  return poll;
+  return attachment;
 }
