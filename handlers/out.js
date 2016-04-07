@@ -1,5 +1,6 @@
-var BOT_NAME = 'yesdoubt';
-var TOKEN = '80xdkjKkn02JgCic18Vmwe7M';
+var BOT_NAME = 'pollbot';
+var TOKEN = 'hZ32m4RHVFbHvUK3kgbFBLhQ';
+var EMOTICONS = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:', ':seven:', ':eight:', ':nine:', ':ten:'];
 
 module.exports = function (req, res, next) {
   var token = req.body.token;
@@ -13,12 +14,27 @@ module.exports = function (req, res, next) {
   }
 
   var text = req.body.text;
-  if (text.indexOf('bruno mars') === -1) {
-    return res.status(200).end();
-  }
-
+  var pollParts = text.match(/(?:[^\s"]+|"[^"]*")+/g);
+  var poll = buildPoll(pollParts);
   var botPayload = {
-    text: 'http://goo.gl/GL8UGi'
+    text: poll,
   };
   return res.status(200).json(botPayload);
 };
+
+
+var buildPoll = function(parts) {
+  if( !(Object.prototype.toString.call( someVar ) === '[object Array]')) {
+      return false;
+  }
+  var poll = "";
+
+  parts.forEach(function(part, index) {
+    if (index < EMOTICONS.length && index != 0) {
+      poll + EMOTICONS[index] + ": " + part +"\\n";
+    } else {
+      poll + part + "\\n"
+    }
+  });
+  return poll;
+}
