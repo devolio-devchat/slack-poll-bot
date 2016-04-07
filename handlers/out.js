@@ -40,7 +40,7 @@ var buildPoll = function(parts) {
   console.log('buildPoll ');
   parts.forEach(function(part, index) {
     if ((index < EMOTICONS.length) && index != 0) {
-      poll = poll + EMOTICONS[index] + ": " + part +"\\n";
+      poll = poll + EMOTICONS[index] + ": " + part +"\n";
     } else {
       poll = poll + part + "\\n"
     }
