@@ -12,8 +12,8 @@ module.exports = function (req, res, next) {
     return res.status(200).end();
   }
 
-  var userName = req.body.user_name;
-  if (userName == BOT_NAME) {
+  var username = req.body.user_name;
+  if (username == BOT_NAME) {
     return res.status(200).end();
   }
   var text = req.body.text;
