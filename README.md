@@ -1,6 +1,6 @@
-# slackbot-boilerplate-nodejs
+# slack-poll-bot
 
-A slackbot sample which supports outgoing, incoming webhooks and slash command.
+A slackbot sample which supports polling via emoticons
 
 ## Installing
 
@@ -13,3 +13,7 @@ $ npm install
 ```
 $ npm start
 ```
+## Arguments
+
+token - the bot token
+type - bot or command

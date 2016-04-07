@@ -1,12 +1,12 @@
 var BOT_NAME = 'pollbot';
 var TOKEN = process.argv[2];
+var TYPE = process.argv[3];
 var EMOTICONS = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:', ':seven:', ':eight:', ':nine:', ':ten:'];
 var FRUITEMOTICONS = [':lemon:', ':apple:', ':tangerine:', ':cherries:', ':grapes:', ':watermelon:', ':strawberry:', ':peach:', ':melon:', ':banana:', ':pineapple:', ':pear:'];
 
 module.exports = function (req, res, next) {
   console.log('received poll');
 
-  console.log(process.argv);
   var token = req.body.token;
   if (token !== TOKEN) {
     return res.status(200).end();
@@ -18,7 +18,9 @@ module.exports = function (req, res, next) {
   }
   var text = req.body.text;
   var pollParts = text.match(/(?:[^\s"]+|"[^"]*")+/g);
-  // pollParts.splice(0, 1);
+  if (TYPE === "bot") {
+    pollParts.splice(0, 1);
+  }
   var poll = buildPoll(pollParts);
 
   var botPayload = {
