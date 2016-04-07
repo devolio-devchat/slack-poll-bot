@@ -19,7 +19,7 @@ module.exports = function (req, res, next) {
   var pollParts = text.match(/(?:[^\s"]+|"[^"]*")+/g);
   console.log(pollParts);
   var poll = buildPoll(pollParts);
-  if (!poll) {
+  if (typeof poll !== 'string') {
     poll = "please supply a poll"
   }
   var botPayload = {
