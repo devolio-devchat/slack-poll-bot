@@ -11,12 +11,13 @@ module.exports = function (req, res, next) {
   }
 
   var userName = req.body.user_name;
-  if (userName === BOT_NAME) {
+  if (userName == BOT_NAME) {
     return res.status(200).end();
   }
   console.log('starting to create poll response');
   var text = req.body.text;
-  var pollParts = text.match(/(?:[^\s"]+|"[^"]*")+/g).splice(0, 1);
+  var pollParts = text.match(/(?:[^\s"]+|"[^"]*")+/g);
+  pollParts.splice(0, 1);
   console.log(pollParts);
   var poll = buildPoll(pollParts);
   if (typeof poll !== 'string') {
