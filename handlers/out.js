@@ -25,7 +25,7 @@ module.exports = function (req, res, next) {
 
 
 var buildPoll = function(parts) {
-  if( !(Object.prototype.toString.call( someVar ) === '[object Array]')) {
+  if( !(Object.prototype.toString.call( parts ) === '[object Array]')) {
       return false;
   }
   var poll = "";
