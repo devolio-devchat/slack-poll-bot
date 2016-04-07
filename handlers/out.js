@@ -41,9 +41,9 @@ var buildPoll = function(parts) {
   };
   parts.forEach(function(part, index) {
     if ((index < FRUITEMOTICONS.length) && index != 0) {
-      attachment.text = attachment.text + FRUITEMOTICONS[index-1] + ": " + part +"\n";
+      attachment.text = attachment.text + FRUITEMOTICONS[index-1] + ": " + part.replace(/"([^"]+(?="))"/g, '$1') +"\n";
     } else {
-      attachment.title = part + "\n"
+      attachment.title = part.replace(/"([^"]+(?="))"/g, '$1') + "\n"
     }
   });
   return attachment;
