@@ -26,7 +26,7 @@ module.exports = function (req, res, next) {
     return res.status(200).json({});
   }
 
-  var poll = buildPoll(pollParts);
+  var poll = buildPoll(pollParts, username);
 
   var botPayload = {
     response_type: "in_channel",
@@ -38,14 +38,14 @@ module.exports = function (req, res, next) {
 };
 
 
-var buildPoll = function(parts) {
+var buildPoll = function(parts, username) {
   if( !(Object.prototype.toString.call( parts ) === '[object Array]')) {
       return false;
   }
   var attachment = {
     "color": "#36a64f",
     text: "",
-    pretext : "There is a new poll! React to this message with the emoticon left of your preferred answer! \n",
+    pretext : "There is a new poll from "+username+"! React to this poll with the emoticon left of your preferred answer! \n",
   };
   parts.forEach(function(part, index) {
     if ((index < FRUITEMOTICONS.length) && index != 0) {
