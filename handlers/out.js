@@ -12,8 +12,8 @@ module.exports = function (req, res, next) {
     return res.status(200).end();
   }
 
-  var userName = req.body.user_name;
-  if (userName == BOT_NAME) {
+  var username = req.body.user_name;
+  if (username == BOT_NAME) {
     return res.status(200).end();
   }
   var text = req.body.text;
@@ -21,7 +21,12 @@ module.exports = function (req, res, next) {
   if (TYPE === "bot") {
     pollParts.splice(0, 1);
   }
-  var poll = buildPoll(pollParts);
+
+  if (pollParts.length < 2) {
+    return res.status(200).json({});
+  }
+
+  var poll = buildPoll(pollParts, username);
 
   var botPayload = {
     response_type: "in_channel",
@@ -33,14 +38,14 @@ module.exports = function (req, res, next) {
 };
 
 
-var buildPoll = function(parts) {
+var buildPoll = function(parts, username) {
   if( !(Object.prototype.toString.call( parts ) === '[object Array]')) {
       return false;
   }
   var attachment = {
     "color": "#36a64f",
     text: "",
-    pretext : "There is a new poll! React to this message with the emoticon left of your preferred answer! \n",
+    pretext : "There is a new poll from "+username+"! React to this poll with the emoticon left of your preferred answer! \n",
   };
   parts.forEach(function(part, index) {
     if ((index < FRUITEMOTICONS.length) && index != 0) {
